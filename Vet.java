@@ -1,66 +1,54 @@
-import java.io.*;
-
 public class Vet {
-
-    // encapsulation of class vars
-
-    private String name;
-
+    
     private String specialty;
+    
+    private String name;
+    
+    private int yearsOfExperience;
 
-    public Vet(String vetName, String vetSpecialty) {
+    // vet constructor
 
-        this.name = vetName;
+    public Vet(String name, String specialty, int yearsOfExperience)
+    {
+        
+        this.name = name;
+        
+        this.specialty = specialty;
+        
+        this.yearsOfExperience = yearsOfExperience;
 
-        this.specialty = vetSpecialty;
     }
 
-    public void main(String[] args) {
-
-        try {
-
-            File vetFile = new File("vetsList.txt");
-
-            if (vetFile.createNewFile()) {
-
-                System.out.println("File created: " + vetFile.getName());
-
-            } else {
-
-                System.out.println("File already exists.");
-            }
-
-        } catch (IOException e) {
-
-            System.out.println("An error occured.");
-
-            e.printStackTrace();
-        }
-
-        try {
-
-            FileWriter myWriter = new FileWriter("vetsList.txt");
-
-            myWriter.write(name + ", " + specialty);
-
-            myWriter.close();
-
-            System.out.println("Vet was successfully added.");
-
-        } catch (IOException e) {
-
-            System.out.println("An error occurred.");
-
-            e.printStackTrace();
-        }
+    public String toString()
+    {
+        return String.format("Vet " + name + " with " + yearsOfExperience + " years of experience is a " + specialty + " doctor.");
     }
 
-    // overriding toString method
+    public int getYearsOfExperience()
+    {
+        return yearsOfExperience;
+    }
 
-    public String toString() {
+    public String getName()
+    {
+        return name;
+    }
 
-        return String.format("Doctor " + name + "'s specialty is " + specialty);
+    public String getSpecialty()
+    {
+        return specialty;
+    }
+    // tests vet class
+    public static void main(String[] args)
+    {
+        
+        Vet jill = new Vet("Jill", "GI", 12);
+        
+        System.out.println(jill.toString());
+        
+        System.out.println(jill.getYearsOfExperience());
+        
+        System.out.println(jill.getSpecialty());
 
     }
 }
-
